@@ -1,85 +1,70 @@
-// /*
-// Name: Tricia Pryer
-
-// SID: 861051465
-
-// Date: April 21, 2015
-
-// Approach: 
-
-// */
 template <class T>
-
-class TwoStackFixed
+void List<T>::push_back(T val)
 {
-    private:
-        int size;
-        int maxtop;
-        
-    public: 
-        TwoStackFixed(int size, int maxtop );
-        void pushStack1(T value);
-        void pushStack2(T value);
-        T popStack1();
-        T popStack2();
-        bool isFullStack1();
-        bool isFullStack2();
-        bool isEmptyStack1();
-        bool isEmptyStack2();
-};
-#endif
-
-TwoStackFixed::TwoStackFixed(int size, int maxtop )
-{
-    /*constructor that constructs array of size and constructs empty stacks with
-    maxtop specifying the partition for stacks.
-    HOW DOES USER SPECIFY THE FIXED AMOUNT OF SPACE FOR EACH STACK? */
-
-    size = size;
-    maxtop = maxtop;
+    Node* newNode = new Node(val);
+    if(head == 0)
+    {
+        head = newNode;
+        tail = newNode;
+        return;
+    }
     
-    T array [size];
-}
-
-void TwoStackFixed::pushStack1(T value)
-{
-    /*to push element into first stack.*/
+    tail->next = newNode;
+    tail = newNode;
+    
     return;
 }
-
-void TwoStackFixed::pushStack2(T value)
+template <class T>
+void List<T>::elementSwap(int pos)
 {
-    /*to push element into second stack. */ 
+    Node* curr1 = head;
+    if(pos == 0)
+    {
+        Node* curr2 = head;
+        head = head->next;
+        curr2->next = head->next;
+        head->next = curr2;
+        curr2 = head;
+        return;
+    }
+    
+    else if(pos >= size() - 1)
+    {
+        cout << "Invalid Location" << endl;
+        return;
+    }
+    
+    for(int i = 0; i < pos - 2; ++i)
+    {
+        curr1 = curr1->next;
+    }
+    Node* curr2 = curr1->next;
+    curr1->next = curr2->next;
+    curr2->next = (curr2->next)->next;
+    (curr1->next)->next = curr2;
     return;
 }
-
-//T TwoStackFixed::popStack1()
-//{
-    /*to pop element from first stack.*/
-//}
-
-//T TwoStackFixed::popStack2()
-//{
-    /*to pop element from second stack.*/
-    //return;
-//}
-
-//bool TwoStackFixed::isFullStack1()
-//{
-    /*helper function to check whether first stack is full. */
-//}
-
-//bool TwoStackFixed::isFullStack2()
-//{
-    /* helper function to check whether second stack is full.*/
-//}
-
-//bool TwoStackFixed::isEmptyStack1()
-//{
-    /* helper function to check whether first stack is empty. */
-//}
-
-//bool TwoStackFixed::isEmptyStack2()
-//{
-    /* helper function to check whether second stack is empty */
-//}
+template <class T>
+int List<T>::size()
+{
+    int sz = 0;
+    Node *curr = head;
+    while(curr != tail)
+    {
+        curr = curr->next;
+        sz++;
+    }
+    sz = sz + 1;
+    return sz;
+}
+template <class T>
+void List<T>::print()
+{
+    int sz = size();
+    Node *curr = head;
+    for(int i = 0; i < sz; ++i)
+    {
+        cout << curr->value << " ";
+        curr = curr->next;
+    }
+}
