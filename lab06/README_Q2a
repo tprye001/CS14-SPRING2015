@@ -1,0 +1,24 @@
+Question 2: Stability
+
+Part a:
+
+Our selection sort function is an unstable sort because sorted
+values are not kept in the same relative ordering based on the
+sequence of insertion. Rather, the order of equal elements are
+up to the whims of the function's assortment. A swap may place
+an element out of order of insertion but another swap may just
+reverse that.
+
+Part b:
+
+The following output underlines the unstable nature of the
+selection sort function:
+
+pre: (10,start) (10,end) (2,2) (1,1) 
+post: (1,1) (2,2) (10,end) (10,start)
+
+The pair (10,start) swaps with (1,1) on the first move and 
+(10,end) swaps with (2,2) on the second move. The resulting
+order is unsorted because although (10,start) is inserted
+first, it is actually after (10,end) after selection sort is
+called.
