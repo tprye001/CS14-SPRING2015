@@ -20,7 +20,7 @@ int main()
     v.push_back(8);
     v.push_back(9);
     cout << "pre:  ";
-    for(int i = 0; i < v.size(); i++)
+    for(unsigned i = 0; i < v.size(); i++)
     {
         cout << v.at(i) << "  ";
     }
@@ -28,7 +28,7 @@ int main()
 
     selectionsort(v);
     cout << "post: ";
-    for(int i = 0; i < v.size(); i++)
+    for(unsigned i = 0; i < v.size(); i++)
     {
         cout << v.at(i) << "  ";
     }
